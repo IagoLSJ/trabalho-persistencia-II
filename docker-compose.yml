@@ -1,0 +1,16 @@
+services:
+  postgres:
+    container_name: db_persistencia
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: persistencia_db
+    ports:
+      - 5532:5432
+    volumes:
+      - persistencia_db:/var/lib/postgresql/data
+
+volumes:
+  persistencia_db:
+    name: persistencia_db
