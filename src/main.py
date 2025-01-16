@@ -13,11 +13,8 @@ app = FastAPI()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """
-    Lifecycle do FastAPI para verificar/criar o banco de dados ao iniciar a aplicação.
-    """
     try:
-        init_database()  # Inicializa o banco de dados e as tabelas
+        init_database() 
         yield
     except Exception as e:
         logging.error(f"Erro ao criar/verificar o banco de dados: {e}")
@@ -33,18 +30,13 @@ class EventoCreate(BaseModel):
     capacidade: int
     organizador_id: int
 
-
 class OrganizadorCreate(BaseModel):
     nome: str
     email: EmailStr
     telefone: str
 
-
 @app.get("/eventos", response_model=list[dict])
 def listar_eventos(db: Session = Depends(get_session)):
-    """
-    Endpoint para listar todos os eventos.
-    """
     eventos = db.query(Evento).all()
     if not eventos:
         raise HTTPException(status_code=404, detail="Nenhum evento encontrado.")
@@ -63,9 +55,6 @@ def listar_eventos(db: Session = Depends(get_session)):
 
 @app.post("/eventos", response_model=dict)
 def criar_evento(evento: EventoCreate, db: Session = Depends(get_session)):
-    """
-    Endpoint para criar um novo evento.
-    """
     # Verifica se o organizador existe
     organizador = db.query(Organizador).filter(Organizador.id == evento.organizador_id).first()
     if not organizador:
@@ -103,9 +92,6 @@ def criar_evento(evento: EventoCreate, db: Session = Depends(get_session)):
         )
 @app.post("/organizadores", response_model=dict)
 def cadastrar_organizador(organizador: OrganizadorCreate, db: Session = Depends(get_session)):
-    """
-    Endpoint para cadastrar um novo organizador.
-    """
     # Verifica se já existe um organizador com o mesmo email
     organizador_existente = db.query(Organizador).filter(Organizador.email == organizador.email).first()
     if organizador_existente:
