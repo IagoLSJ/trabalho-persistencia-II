@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy_utils import database_exists, create_database
-from Models import Base
+from src.Models import Base
 import os
 from dotenv import load_dotenv
 import logging

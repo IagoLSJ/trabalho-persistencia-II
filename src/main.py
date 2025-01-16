@@ -6,8 +6,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from contextlib import asynccontextmanager
 from typing import List
-from database import init_database, get_session
-from Models import Evento, Organizador
+from src.Database import init_database, get_session
+from src.Models import Evento, Organizador
 
 app = FastAPI()
 
