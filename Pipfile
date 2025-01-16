@@ -11,6 +11,7 @@ pandas = "*"
 sqlalchemy-utils = "*"
 python-dotenv = "*"
 alembic = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
