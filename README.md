@@ -71,6 +71,11 @@ Abaixo está uma visão geral dos principais arquivos e diretórios do projeto:
     ```bash
     docker-compose up
     ```
+3. Inicie o servidor
+
+    ```bash
+    uvicorn main:app --reload
+    ```
 
 3. Acesse a aplicação conforme instruído no código ou na saída do terminal. Caso a aplicação tenha uma interface web, você poderá acessá-la em `http://localhost` (ou outra porta configurada no `docker-compose.yml`).
 
