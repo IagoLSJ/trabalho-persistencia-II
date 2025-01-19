@@ -15,6 +15,7 @@ class Evento(Base):
     capacidade: Mapped[int] = mapped_column(nullable=False)
     organizador_id: Mapped[int] = mapped_column(ForeignKey("organizadores.id"), nullable=False)
 
+    #Relações
     organizador: Mapped["Organizador"] = relationship(back_populates="eventos")
     participantes: Mapped[list["Participante"]] = relationship(back_populates="evento", cascade="all, delete-orphan")
 
